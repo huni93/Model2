@@ -34,6 +34,11 @@ public class MemberController extends MskimRequestMapping {
 		// TODO Auto-generated method stub
 		return "/WEB-INF/view/member/shopbasket.jsp";
 	}
+	@RequestMapping("board")
+	public String board(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		// TODO Auto-generated method stub
+		return "/WEB-INF/view/member/board.jsp";
+	}
 	
 	@RequestMapping("memberlogout")
 	public String memberlogout(HttpServletRequest request, HttpServletResponse res) throws Exception {
