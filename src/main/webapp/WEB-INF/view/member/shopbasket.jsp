@@ -32,10 +32,7 @@
                     <th>삭제</th>
                 </tr>
             </thead>
-            <tbody id="cartItems">
-                <!-- 장바구니 아이템이 여기에 들어갑니다. -->
-            </tbody>
-        </table>
+           </table>
     </div>
 </main>
 </body>
