@@ -23,14 +23,10 @@
     <div class="container">
         <h2>장바구니 목록</h2>
         <table class="table">
-            <thead>
-                <tr>
-                    <th>상품명</th>
-                    <th>가격</th>
-                    <th>수량</th>
-                    <th>합계</th>
-                    <th>삭제</th>
-                </tr>
+            <thead>         
+            <tr><td>상품번호</td><td>${mem.jname}</td>
+                <td>상품</td><td>${mem.jname}</td><tr> 
+         
             </thead>
            </table>
     </div>
