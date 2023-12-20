@@ -4,16 +4,19 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.MemberDao;
 import jumun.Jumun;
+import kic.mskim.Login;
 import kic.mskim.MskimRequestMapping;
 import kic.mskim.RequestMapping;
 import model.Member;
 
+@WebServlet("/member/*")
 public class MemberController extends MskimRequestMapping {
 	
 HttpSession session;
@@ -47,31 +50,18 @@ HttpSession session;
 		return "/WEB-INF/view/member/index.jsp";
 	}
 	
-	@RequestMapping("shopbasket")
-	public String shopbasket(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		// TODO Auto-generated method stub
-		return "/WEB-INF/view/member/shopbasket.jsp";
-	}
-	@RequestMapping("board")
-	public String board(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		// TODO Auto-generated method stub
-		return "/WEB-INF/view/member/board.jsp";
-	}
-	
 	@RequestMapping("memberlogout")
 	public String memberlogout(HttpServletRequest request, HttpServletResponse res) throws Exception {
-		HttpSession session=request.getSession();
 		session.invalidate();
 		request.setAttribute("msg", "logout 했습니다.");
 		request.setAttribute("url", "/member/loginForm");
 		
 		return "/WEB-INF/view/alert.jsp";
 	}
-	
+	@Login(key = "id")
 	@RequestMapping("memberinfo")
 	public String memberinfo(HttpServletRequest request, HttpServletResponse res) throws Exception {
 		MemberDao md = new MemberDao();
-		HttpSession session=request.getSession();
 		String login = (String) session.getAttribute("id");
 		Member mem = md.oneMember(login);
 		request.setAttribute("mem", mem);
@@ -137,8 +127,7 @@ HttpSession session;
 	}
 	
 	@RequestMapping("memberUpdateForm")
-	public String memberUpdateForm(HttpServletRequest request, HttpServletResponse res) throws Exception {
-		HttpSession session=request.getSession();
+	public String memberUpdateForm(HttpServletRequest request, HttpServletResponse res) throws Exception {		
 		String login =  (String) session.getAttribute("id");
 		MemberDao md = new MemberDao();
 		Member mem = md.oneMember(login);
@@ -148,9 +137,9 @@ HttpSession session;
 		return "/WEB-INF/view/member/memberUpdateForm.jsp";
 	}
 	
+	@Login(key = "id")
 	@RequestMapping("memberUpdatePro")
 	public String memberUpdatePro(HttpServletRequest request, HttpServletResponse res) throws Exception {
-		HttpSession session=request.getSession();
 		String login =  (String) session.getAttribute("id");
 		Member mem = new Member();  //client 에서 넘어온 자료
 		request.setCharacterEncoding("utf-8");
@@ -257,4 +246,9 @@ HttpSession session;
 		return "/WEB-INF/view/member/jumunlist.jsp";
 	}
 	
+	@RequestMapping("jumunadd")
+	public String jumunadd(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		return "/WEB-INF/view/member/jumunList.jsp";
+	}
 }

@@ -24,9 +24,9 @@
         <h2>장바구니 목록</h2>
         <table class="table">
             <thead>         
-            <tr><td>상품번호</td><td>${mem.jname}</td>
-                <td>상품</td><td>${mem.jname}</td><tr> 
-         
+            <tr><td>상품번호</td><td>${mem.jno}</td>
+                <td>상품</td><td>${mem.jname}</td>
+                <tr>         
             </thead>
            </table>
     </div>
