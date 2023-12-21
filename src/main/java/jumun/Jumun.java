@@ -4,6 +4,7 @@ public class Jumun {
 
 	private String jno;
     private String jname;
+    private int price;
 	public String getJno() {
 		return jno;
 	}
@@ -16,9 +17,15 @@ public class Jumun {
 	public void setJname(String jname) {
 		this.jname = jname;
 	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	@Override
 	public String toString() {
-		return "jumunList [jno=" + jno + ", jname=" + jname + "]";
+		return "Jumun [jno=" + jno + ", jname=" + jname + ", price=" + price + "]";
 	}
-    
+
 }

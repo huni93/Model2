@@ -26,7 +26,7 @@
 							<div class="card-body p-4">
 								<div class="text-center">
 									<!-- Product name-->
-									<h5 class="fw-bolder">상품 1</h5>
+									<h5 class="fw-bolder">${jum.jname }</h5>
 									<!-- Product reviews-->
 
 
@@ -39,13 +39,17 @@
 										<div class="bi-star-fill"></div>
 									</div>
 									<!-- Product price-->
-									금액
+									${jum.price}원<br>
+									
 								</div>
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
-									<a class="btn btn-outline-dark mt-auto" href="jumunAdd?jno=${jum.jno}">Add
+									<a class="btn btn-outline-dark mt-auto" 
+									
+									
+									href="${pageContext.request.contextPath}/jumun/jumunAdd?jno=${jum.jno}">Add
 										to cart</a>
 								</div>
 							</div>

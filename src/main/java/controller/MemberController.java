@@ -236,19 +236,5 @@ HttpSession session;
 	
 	return "/WEB-INF/view/alert.jsp";
 	}
-	@RequestMapping("jumunlist")
-	public String jumunlist(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		// TODO Auto-generated method stub
-		MemberDao md = new MemberDao();
-		List<Jumun> li = md.jumunList();
-		System.out.println(li);
-		req.setAttribute("li", li);
-		return "/WEB-INF/view/member/jumunlist.jsp";
-	}
-	
-	@RequestMapping("jumunadd")
-	public String jumunadd(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		return "/WEB-INF/view/member/jumunList.jsp";
-	}
 }
