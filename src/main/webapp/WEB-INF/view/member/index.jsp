@@ -37,10 +37,8 @@
 										<div class="bi-star-fill"></div>
 										<div class="bi-star-fill"></div>
 										<div class="bi-star-fill"></div>
-									</div>
-									<!-- Product price-->
-									${jum.price}원<br>
-									
+									</div>									
+									${jum.price }원<br>															
 								</div>
 							</div>
 							<!-- Product actions-->

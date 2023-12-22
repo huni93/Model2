@@ -62,6 +62,7 @@ HttpSession session;
 	@RequestMapping("memberinfo")
 	public String memberinfo(HttpServletRequest request, HttpServletResponse res) throws Exception {
 		MemberDao md = new MemberDao();
+		
 		String login = (String) session.getAttribute("id");
 		Member mem = md.oneMember(login);
 		request.setAttribute("mem", mem);
@@ -78,7 +79,7 @@ HttpSession session;
 		HttpSession session=request.getSession();
 
 		String msg = "아이디를 확인하세요";
-		String url = "/member/loginForm.jsp";
+		String url = "/member/loginForm";
 		if(mem != null) { //id 존재할때
 			if (password.equals(mem.getPassword())) { //login ok
 				session.setAttribute("id", id);

@@ -6,7 +6,7 @@
   
   <body>    <!-- Section-->
       <section> 
-                <h2> 게시판 </h2>
+                <h2> ${boardName} </h2>
  
 <hr class ="hr1" noshade> 
 
@@ -54,7 +54,6 @@
 </div>
 
 <span class="right">
-  <input type="button" value="목록" class="greylist">
   <a href="boardForm"><input type="button" value="글쓰기" class="gradient"></a>
 </span>                
         </section>

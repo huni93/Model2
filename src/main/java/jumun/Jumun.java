@@ -5,7 +5,9 @@ public class Jumun {
 	private String jno;
     private String jname;
     private int price;
-	public String getJno() {
+	
+    
+    public String getJno() {
 		return jno;
 	}
 	public void setJno(String jno) {

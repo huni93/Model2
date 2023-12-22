@@ -26,19 +26,21 @@
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/member/index">Bootstrap</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                      
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/member/index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/boardForm">게시판</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/boardList">게시판</a>
+                        </li>
                          <c:if test = "${sessionScope.id==null}">          
-						 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/loginForm">로그인</a></li>
-						 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/MemberInput">회원가입</a></li>
-						 </c:if>
-						 <c:if test = "${sessionScope.id!=null}">
-						 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/memberinfo">[${sessionScope.id}]&nbsp;&nbsp;회원정보</a></li>
-						 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/jumun/jumunList">장바구니</a></li>
-						 <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/memberlogout">로그아웃</a></li>
-						  </c:if>
+                   <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/loginForm">로그인</a></li>
+                   <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/MemberInput">회원가입</a></li>
+                   </c:if>
+                   <c:if test = "${sessionScope.id!=null}">
+                   <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/memberinfo">[${sessionScope.id}]&nbsp;&nbsp;회원정보</a></li>
+                   <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/jumun/jumunList">장바구니</a></li>
+                   <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/memberlogout">로그아웃</a></li>
+                    </c:if>
                             </ul>                   
                 </div>
             </div>

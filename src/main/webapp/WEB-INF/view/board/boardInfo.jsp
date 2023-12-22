@@ -23,12 +23,14 @@
             <tr><td>조회수</td><td>${board.readcnt}</td><tr>
             
             
-             <tr>
+              <tr>
              <td colspan = "2" class = "w3-center">
              <a class="btn btn-primary"    
              href="${pageContext.request.contextPath}/board/boardUpdateForm?num=${board.num}">변경</a>
              <a class="btn btn-primary" 
              href="${pageContext.request.contextPath}/board/boardDeleteForm?num=${board.num}">삭제</a>
+              <a class="btn btn-primary" 
+             href="${pageContext.request.contextPath}/board/boadList">목록</a>           
            </td>
            </tr>
             </table>

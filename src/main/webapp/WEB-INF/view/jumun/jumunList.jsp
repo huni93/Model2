@@ -13,8 +13,7 @@
         <h2>장바구니 목록</h2>
         <table height="40%">
         <thead>
-        <tr>
-        <th>유저</th>       
+        <tr>      
         <th>상품번호</th>
         <th>상품</th>
           <th>수량</th>
@@ -22,7 +21,6 @@
         </tr></thead>
             <thead> <c:forEach var="j" items="${li}">        
             <tr>                
-                <td>${j.userid}</td>
                 <td>${j.itemid}</td>
                  <td>${j.jname}</td>
                 <td>${j.qty}</td>

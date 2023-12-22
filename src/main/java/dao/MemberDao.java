@@ -124,6 +124,7 @@ public class MemberDao {
 			Jumun j = new Jumun();
 			j.setJname(rs.getString(2));
 			j.setJno(rs.getString(1));
+			j.setPrice(rs.getInt(3));
 			li.add(j);
 		}
 		

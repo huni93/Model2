@@ -50,7 +50,11 @@ public class CartDao {
 	public List<Cart> jumunList(String id) throws SQLException {
 
 		Connection conn = getConnection();
-		String sql = "select *  from cart a, jmnumber j where a.itemid = j.jno and a.userid = ?";
+		String sql = " select  a.itemid, j.jname, sum(a.qty) as qty, sum(j.price) as price "
+				+ " from cart a, jmnumber j  "
+				+ " where a.itemid = j.jno and a.userid = ?  "
+				+ " group BY a.itemid, j.jname, j.price "
+				+ " order by itemid ";
 				
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
@@ -61,8 +65,8 @@ public class CartDao {
 		while (rs.next()) {
 
 			Cart m = new Cart();
-			m.setSer(rs.getString("ser"));
-			m.setUserid(rs.getString("userid"));
+			//m.setSer(rs.getString("ser"));
+			//m.setUserid(rs.getString("userid"));
 			m.setItemid(rs.getString("itemid"));
 			m.setQty(rs.getString("qty"));
 			m.setJname(rs.getString("jname"));

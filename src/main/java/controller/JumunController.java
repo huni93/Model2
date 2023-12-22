@@ -46,6 +46,7 @@ public class JumunController extends MskimRequestMapping {
         HttpSession session = req.getSession();
         String id = (String) session.getAttribute("id");
 		List<Cart>  li = cd.jumunList(id);
+
 		System.out.println(li);
 		req.setAttribute("li", li);
 		

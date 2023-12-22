@@ -52,11 +52,19 @@ public class BoardDao {
 	                  
 	   }
 	 
-	 public List<Board> boardList() throws UnsupportedEncodingException, SQLException {
+	 public List<Board> boardList(int pageInt, int limit, String boardid) throws UnsupportedEncodingException, SQLException {
 		 
 		 Connection conn = getConnection();
+         String sql = " select * from( "
+         		+ " select rownum rnum, a.* from ( "
+         		+ " select * from board where boardid = ? "
+         		+ " order by num desc) a) "
+         		+ " where rnum between ? and ? ";
+         PreparedStatement pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, boardid);// 분류
+         pstmt.setInt(2, (pageInt-1)*limit+1);// start  
+         pstmt.setInt(3, (pageInt*limit));// end    
          
-         PreparedStatement pstmt = conn.prepareStatement("select * from board");
 		ResultSet rs = pstmt.executeQuery();
 		List<Board> li = new ArrayList<>();
 		while(rs.next()) {
@@ -75,6 +83,17 @@ public class BoardDao {
 		}
 		return li;
 	 }
+public int boardCount(String boardid) throws UnsupportedEncodingException, SQLException {
+		 
+		 Connection conn = getConnection();       
+         PreparedStatement pstmt = conn.prepareStatement("select nvl (count(*),0) from board where boardid = ?");
+         pstmt.setString(1, boardid);
+ 		 ResultSet rs = pstmt.executeQuery();
+ 		 if(rs.next()) {
+ 			 return rs.getInt(1);
+ 		 }
+           return 0;
+}
 	 public Board oneBoard(int num) throws UnsupportedEncodingException, SQLException {
 		 
         Connection conn = getConnection();         
@@ -114,4 +133,15 @@ public class BoardDao {
              return num;
 	                  
 	   }
+	  
+	  public int boardDelete(int num) throws UnsupportedEncodingException, SQLException {
+        	
+          Connection con = getConnection();
+          PreparedStatement pstmt = null;
+          String sql = "delete from board where num =?";    
+          pstmt = con.prepareStatement( sql );
+          pstmt.setInt(1,num);
+          return pstmt.executeUpdate();
+                      
+       }
 }
