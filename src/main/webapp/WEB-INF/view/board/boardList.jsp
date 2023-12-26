@@ -47,11 +47,18 @@
 </table>
 </br>
 
-<div class="center" >
-    <a href  = "!#">◀ 이전</a> 
-    <a href  = "!#">1</a>  
-    <a href  = "https://www.daum.net/">다음 ▶</a>
-</div>
+<ul class="pagination justify-content-center text-center">
+  <li class="page-item <c:if test="${start<=bottomLine}"> disabled  </c:if> ">
+    <a class="page-link" href="${pageContext.request.contextPath}/board/boardList?pageNum=${start-bottomLine}">Previous</a></li>
+  
+  <c:forEach var = "p" begin ="${start}" end="${end}">
+ 
+  <li class="page-item <c:if test="${pageInt==p}"> active  </c:if>"><a class="page-link" 
+       href="${pageContext.request.contextPath}/board/boardList?pageNum=${p}">${p}</a></li>
+  </c:forEach>
+ 
+  <li class="page-item <c:if test="${end>=maxPage}"> disabled  </c:if>"> <a class="page-link" href="${pageContext.request.contextPath}/board/boardList?pageNum=${start+bottomLine}">Next</a></li>
+</ul>
 
 <span class="right">
   <a href="boardForm"><input type="button" value="글쓰기" class="gradient"></a>

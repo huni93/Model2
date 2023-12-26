@@ -11,7 +11,7 @@ import java.util.List;
 
 import jumun.Cart;
 import jumun.Jumun;
-import model.Board;
+import model.MyBoard;
 import model.Member;
 
 public class CartDao {
@@ -94,6 +94,5 @@ public class CartDao {
 		return num;
 
 	}
-
 	
 }

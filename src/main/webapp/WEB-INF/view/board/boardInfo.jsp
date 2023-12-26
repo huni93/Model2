@@ -30,7 +30,7 @@
              <a class="btn btn-primary" 
              href="${pageContext.request.contextPath}/board/boardDeleteForm?num=${board.num}">삭제</a>
               <a class="btn btn-primary" 
-             href="${pageContext.request.contextPath}/board/boadList">목록</a>           
+             href="${pageContext.request.contextPath}/board/boardList">목록</a>           
            </td>
            </tr>
             </table>

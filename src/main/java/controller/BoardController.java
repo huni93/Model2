@@ -16,7 +16,7 @@ import dao.BoardDao;
 import dao.MemberDao;
 import kic.mskim.MskimRequestMapping;
 import kic.mskim.RequestMapping;
-import model.Board;
+import model.MyBoard;
 
 @WebServlet("/board/*")
 public class BoardController extends MskimRequestMapping {
@@ -53,7 +53,7 @@ public class BoardController extends MskimRequestMapping {
 		
 		MultipartRequest multi = new MultipartRequest
 				(req,path,10*1024*1024,"utf-8");
-		Board board = new Board();
+		MyBoard board = new MyBoard();
 		
 		String boardid = (String) session.getAttribute("boardid");
 		if(boardid==null) boardid = "1";
@@ -81,7 +81,9 @@ public class BoardController extends MskimRequestMapping {
 		
 		//board session 처리한다.		
 		if(req.getParameter("boardid")!=null) { //? boardid = 3
-			session.setAttribute("boardid", req.getParameter("boardid"));}		
+			session.setAttribute("boardid", req.getParameter("boardid"));}
+		    session.setAttribute("pageNum", "1");
+		
 		String boardid = (String) session.getAttribute("boardid");
 		if(boardid==null) boardid = "1";
 		String boardName = "";
@@ -97,20 +99,39 @@ public class BoardController extends MskimRequestMapping {
 			break;
 		}
 		//page 설정
-		String pageNum = req.getParameter("pageNum");
+		if(req.getParameter("pageNum")!=null) { 
+			session.setAttribute("pageNum", req.getParameter("pageNum"));}
+		
+		String pageNum = (String) session.getAttribute("pageNum");
 		if(pageNum == null) pageNum ="1";
 		
-		int limit = 5; //한페이장 게시글 갯수
+		int limit = 3; //한페이장 게시글 갯수
 		int pageInt = Integer.parseInt(pageNum); //페이지 번호
 		int boardCount = bd.boardCount(boardid); //전체 개시글 갯수
 		
 		int boardNum = boardCount -((pageInt-1)*limit);
 		
-		List<Board> li = bd.boardList(pageInt,limit,boardid);
+		List<MyBoard> li = bd.boardList(pageInt,limit,boardid);
 		
+		//pagging
+		int bottomLine =3;
+		int start = (pageInt-1)/bottomLine * bottomLine +1; //1,2,3->1 ,,4,5,6->4
+		int end = start + bottomLine -1;
+		int maxPage = (boardCount/limit) + (boardCount % limit ==0?0:1);
+		if (end > maxPage)
+			end = maxPage;
+				
+		req.setAttribute("bottomLine", bottomLine);
+		req.setAttribute("start", start);
+		req.setAttribute("end", end);
+		req.setAttribute("maxPage", maxPage);
+		req.setAttribute("pageInt", pageInt);
 		
 		req.setAttribute("li", li);
 		req.setAttribute("boardName", boardName);
+		req.setAttribute("boardCount", boardCount);
+		
+		
 		
 		return "/WEB-INF/view/board/boardList.jsp";
 }
@@ -120,7 +141,7 @@ public class BoardController extends MskimRequestMapping {
 		// TODO Auto-generated method stub
 		int num = Integer.parseInt(req.getParameter("num"));
 		
-		Board board = bd.oneBoard(num);
+		MyBoard board = bd.oneBoard(num);
 		
 		req.setAttribute("board", board);
 		
@@ -132,7 +153,7 @@ public class BoardController extends MskimRequestMapping {
 		// TODO Auto-generated method stub
 		
         int num = Integer.parseInt(req.getParameter("num"));
-		Board board = bd.oneBoard(num);		
+        MyBoard board = bd.oneBoard(num);		
 		req.setAttribute("board", board);
 		return "/WEB-INF/view/board/boardUpdateForm.jsp";
 }
@@ -148,7 +169,7 @@ public class BoardController extends MskimRequestMapping {
 		MultipartRequest multi = new MultipartRequest
 				(req,path,10*1024*1024,"utf-8");
 		int num = Integer.parseInt(multi.getParameter("num"));
-		Board originboard = bd.oneBoard(num);
+		MyBoard originboard = bd.oneBoard(num);
 		
 		String msg = "게시물 수정 실패";
 		String url = "/board/boardForm?num="+originboard.getNum();
@@ -156,7 +177,7 @@ public class BoardController extends MskimRequestMapping {
 			
 		
 		String nfileName = multi.getFilesystemName("file1");
-		Board board = new Board();
+		MyBoard board = new MyBoard();
 		board.setBoardid("1");
 		board.setNum(num);
 		board.setName(multi.getParameter("name"));
@@ -191,11 +212,11 @@ public class BoardController extends MskimRequestMapping {
 		return "/WEB-INF/view/board/boardDeleteForm.jsp";
 }
 	
-	@RequestMapping("memberDeletePro") 
-	public String memberDeletePro(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	@RequestMapping("boardDeletePro") 
+	public String boardDeletePro(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub
 		int num = Integer.parseInt(req.getParameter("num"));
-		Board board = bd.oneBoard(num);
+		MyBoard board = bd.oneBoard(num);
 		String msg = "삭제 불가합니다.";
 		String url = "/board/boardDeleteForm?num="+num;
 		if(board.getPass().equals(req.getParameter("pass"))) {

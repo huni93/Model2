@@ -17,7 +17,7 @@ import jumun.Cart;
 import jumun.Jumun;
 import kic.mskim.MskimRequestMapping;
 import kic.mskim.RequestMapping;
-import model.Board;
+import model.MyBoard;
 
 @WebServlet("/jumun/*")
 public class JumunController extends MskimRequestMapping {
@@ -52,6 +52,7 @@ public class JumunController extends MskimRequestMapping {
 		
 		return "/WEB-INF/view/jumun/jumunList.jsp";
 	}
+	
 }
 
 

@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class Board {
+public class MyBoard {
 		// TODO Auto-generated method stub
 		private int num;
 		private String name;

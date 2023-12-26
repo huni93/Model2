@@ -14,21 +14,27 @@
         <table height="40%">
         <thead>
         <tr>      
-        <th>상품번호</th>
+        <th>선택</th>
         <th>상품</th>
           <th>수량</th>
          <th>가격</th> 
         </tr></thead>
             <thead> <c:forEach var="j" items="${li}">        
             <tr>                
-                <td>${j.itemid}</td>
+                <td><input type="checkbox" name="selectedItems" value="${j.itemid}"></td>
                  <td>${j.jname}</td>
-                <td>${j.qty}</td>
-                <td>${j.price}</td>
-                
-               </tr> </c:forEach>    
-            </thead>
-           </table>
+                 <td><input type="number" name="qty" min="0" value="${j.qty}"></td>           
+                <td>${j.price}</td> 
+                              
+               </tr> </c:forEach> 
+               <tr>
+                    <td colspan="5" style="text-align: center;">
+                        <a class="btn btn-primary" href="#">구매</a>
+                        <a class="btn btn-primary" href="#">삭제</a>         
+                    </td>
+                </tr>   
+            </thead>           
+           </table>          
     </div>
 </main>
 </body>

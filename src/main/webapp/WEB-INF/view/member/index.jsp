@@ -44,9 +44,7 @@
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="text-center">
-									<a class="btn btn-outline-dark mt-auto" 
-									
-									
+									<a class="btn btn-outline-dark mt-auto" 						
 									href="${pageContext.request.contextPath}/jumun/jumunAdd?jno=${jum.jno}">Add
 										to cart</a>
 								</div>
