@@ -1,6 +1,6 @@
 package model;
 
-public class Comment {
+public class MyComment {
 	private int ser;
 	private int num;
 	private String content;
