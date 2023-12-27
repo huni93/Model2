@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
             
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/member/index">Bootstrap</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/member/index">서인 양만</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 
@@ -46,10 +46,10 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="bg-dark py-3">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>                    
+                    <h1 class="display-4 fw-bolder">장어맛집</h1>                    
                 </div>
             </div>
         </header>

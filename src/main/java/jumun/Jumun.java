@@ -5,9 +5,16 @@ public class Jumun {
 	private String jno;
     private String jname;
     private int price;
+    private String image;
 	
     
-    public String getJno() {
+    public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getJno() {
 		return jno;
 	}
 	public void setJno(String jno) {
@@ -27,7 +34,8 @@ public class Jumun {
 	}
 	@Override
 	public String toString() {
-		return "Jumun [jno=" + jno + ", jname=" + jname + ", price=" + price + "]";
+		return "Jumun [jno=" + jno + ", jname=" + jname + ", price=" + price + ", image=" + image + "]";
 	}
+	
 
 }

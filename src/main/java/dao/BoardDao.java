@@ -37,7 +37,7 @@ public class BoardDao {
 	      Connection conn = getConnection();
 	          
 	         PreparedStatement pstmt = conn.prepareStatement("insert into myboard "
-	        		  + "values (boardseq.nextval,?,?,?,?,?,sysdate,0,?)");
+	        		  + "values (myboardseq.nextval,?,?,?,?,?,sysdate,0,?)");
 	         //mapping
 	         pstmt.setString(1,board.getName());
 	         pstmt.setString(2,board.getPass());
@@ -86,7 +86,7 @@ public class BoardDao {
 public int boardCount(String boardid) throws UnsupportedEncodingException, SQLException {
 		 
 		 Connection conn = getConnection();       
-         PreparedStatement pstmt = conn.prepareStatement("select nvl (count(*),0) from board where boardid = ?");
+         PreparedStatement pstmt = conn.prepareStatement("select nvl (count(*),0) from myboard where boardid = ?");
          pstmt.setString(1, boardid);
  		 ResultSet rs = pstmt.executeQuery();
  		 if(rs.next()) {
@@ -141,6 +141,18 @@ public int boardCount(String boardid) throws UnsupportedEncodingException, SQLEx
           String sql = "delete from myboard where num =?";    
           pstmt = con.prepareStatement( sql );
           pstmt.setInt(1,num);
+          return pstmt.executeUpdate();
+                      
+       }
+	  
+	  public int insertComment(String comment, int num) throws UnsupportedEncodingException, SQLException {
+      	
+          Connection con = getConnection();
+          PreparedStatement pstmt = null;
+          String sql = "insert into myboardcomment values (myboardcomseq.nextval,?,?,sysdate)";    
+          pstmt = con.prepareStatement( sql );
+          pstmt.setInt(1,num);
+          pstmt.setString(2,comment);
           return pstmt.executeUpdate();
                       
        }

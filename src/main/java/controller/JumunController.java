@@ -18,6 +18,7 @@ import jumun.Jumun;
 import kic.mskim.MskimRequestMapping;
 import kic.mskim.RequestMapping;
 import model.MyBoard;
+import model.MyComment;
 
 @WebServlet("/jumun/*")
 public class JumunController extends MskimRequestMapping {
@@ -52,7 +53,27 @@ public class JumunController extends MskimRequestMapping {
 		
 		return "/WEB-INF/view/jumun/jumunList.jsp";
 	}
-	
+	@RequestMapping("deleteSelectedItems")
+	public String deleteSelectedItems(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	    String[] selectedIds = req.getParameterValues("selectedItems");
+	    
+	    if (selectedIds != null && selectedIds.length > 0) {
+	        CartDao cd = new CartDao();
+	        int deletedItemCount = 0;
+
+	        for (String id : selectedIds) {
+	            if (cd.deleteCartItem(id)) {
+	                deletedItemCount++;
+	            }
+	        }
+	        req.setAttribute("deletedItemCount", deletedItemCount);
+	    } else {
+	        req.setAttribute("deletedItemCount", 0);
+	    }
+
+	    return "/WEB-INF/view/alert.jsp";
+	}
+		
 }
 
 

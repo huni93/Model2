@@ -122,9 +122,11 @@ public class MemberDao {
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			Jumun j = new Jumun();
-			j.setJname(rs.getString(2));
-			j.setJno(rs.getString(1));
-			j.setPrice(rs.getInt(3));
+			j.setJname(rs.getString("jname"));
+			j.setJno(rs.getString("jno"));
+			j.setPrice(rs.getInt("price"));
+			j.setImage(rs.getString("image"));
+			System.out.println(rs.getInt("price"));
 			li.add(j);
 		}
 		

@@ -51,22 +51,20 @@ public class CartDao {
 
 		Connection conn = getConnection();
 		String sql = " select  a.itemid, j.jname, sum(a.qty) as qty, sum(j.price) as price "
-				+ " from cart a, jmnumber j  "
-				+ " where a.itemid = j.jno and a.userid = ?  "
-				+ " group BY a.itemid, j.jname, j.price "
-				+ " order by itemid ";
-				
+				+ " from cart a, jmnumber j  " + " where a.itemid = j.jno and a.userid = ?  "
+				+ " group BY a.itemid, j.jname, j.price " + " order by itemid ";
+
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
-		
+
 		ResultSet rs = pstmt.executeQuery();
 		List<Cart> li = new ArrayList();
 
 		while (rs.next()) {
 
 			Cart m = new Cart();
-			//m.setSer(rs.getString("ser"));
-			//m.setUserid(rs.getString("userid"));
+			// m.setSer(rs.getString("ser"));
+			// m.setUserid(rs.getString("userid"));
 			m.setItemid(rs.getString("itemid"));
 			m.setQty(rs.getString("qty"));
 			m.setJname(rs.getString("jname"));
@@ -75,8 +73,7 @@ public class CartDao {
 
 		}
 		return li;
-		
-		
+
 	}
 
 	public int insertjumun(Jumun jumun) throws UnsupportedEncodingException, SQLException {
@@ -94,5 +91,34 @@ public class CartDao {
 		return num;
 
 	}
-	
-}
+
+	public boolean deleteCartItem(String ser) {
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+
+	    try {
+	        conn = getConnection();
+
+	        String sql = "DELETE FROM cart WHERE ser = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, ser);
+	        int rowsAffected = pstmt.executeUpdate();
+
+	        return rowsAffected > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (pstmt != null)
+	                pstmt.close();
+	            if (conn != null)
+	                conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return false;
+	}
+
+	}
+

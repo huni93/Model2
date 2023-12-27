@@ -6,6 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+function commentPro(num) {
+	let comment = document.querySelector("#comment").value
+	alert(comment)
+	const xhttp = new XMLHttpRequest()
+	let url = "${pageContext.request.contextPath}/board/boardCommentPro?comment="
+			+comment+"&boardnum="+num
+	xhttp.open("GET",url,true)
+	xhttp.send()
+	xhttp.onreadystatechange = function() {		
+		if(this.readyState ==4 && this.status==200) {
+		alert("data:"+this.responseText)
+		
+	let commentList = document.querySelector("#commentList")
+	commentList.innerHTML = this.responseText + "<br>" + commentList.innerHTML
+	}
+}}
+</script>
 </head>
 <body>
 
@@ -34,6 +52,23 @@
            </td>
            </tr>
             </table>
+            
+            <div class="row">
+					<div class="col-sm-1">답변글</div>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="comment"
+							onkeyup="enterkey('${board.num}')">
+					</div>
+					<div class="col-sm-1">
+						<button class="btn btn-primary"
+							onclick="commentPro('${board.num}')">저장</button>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class = "col-sm-10" id="commentList">
+					</div>			
+				</div>
          </div>
       </div>
    

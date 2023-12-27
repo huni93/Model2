@@ -5,7 +5,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script>
+function deleteSelectedItems() {
+    var selectedItems = document.getElementsByName("selectedItems");
+    var selectedIds = [];
 
+    for (var i = 0; i < selectedItems.length; i++) {
+        if (selectedItems[i].checked) {
+            selectedIds.push(selectedItems[i].value);
+        }
+    }
+    if (selectedIds.length > 0) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/your-app-context/deleteSelectedItems", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert("삭제된 항목의 ID: " + selectedIds.join(", "));
+            }
+        };
+        var params = "selectedItems=" + encodeURIComponent(selectedIds.join(","));
+        xhr.send(params);
+    } else {
+        alert("삭제할 항목을 선택해주세요.");
+    }
+}
+</script>
 </head>
 <body>
 <main>
@@ -30,7 +55,7 @@
                <tr>
                     <td colspan="5" style="text-align: center;">
                         <a class="btn btn-primary" href="#">구매</a>
-                        <a class="btn btn-primary" href="#">삭제</a>         
+                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/jumun/jumunList">삭제</a>         
                     </td>
                 </tr>   
             </thead>           

@@ -17,6 +17,7 @@ import dao.MemberDao;
 import kic.mskim.MskimRequestMapping;
 import kic.mskim.RequestMapping;
 import model.MyBoard;
+import model.MyComment;
 
 @WebServlet("/board/*")
 public class BoardController extends MskimRequestMapping {
@@ -232,5 +233,17 @@ public class BoardController extends MskimRequestMapping {
 			req.setAttribute("url", url);
 		return "/WEB-INF/view/alert.jsp";
 }
+	@RequestMapping("boardCommentPro") 
+	public String boardCommentPro(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		// TODO Auto-generated method stub
+		String comment = req.getParameter("comment");
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		bd.insertComment( comment,boardnum);
+		MyComment c= new MyComment();
+		c.setNum(boardnum);
+		c.setContent(comment);
+		req.setAttribute("c", c);
+		return "/single/boardCommentPro.jsp";
+	}
 }
 

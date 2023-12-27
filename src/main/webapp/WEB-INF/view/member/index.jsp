@@ -20,8 +20,8 @@
 							<!-- Product image-->
 
 
-							<img class="card-img-top"
-								src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+							<img class="card-img-top" style="width: 100%; height: 200px;"
+								src="${pageContext.request.contextPath}/image/jmnumber/${jum.image}" alt="..." />
 							<!-- Product details-->
 							<div class="card-body p-4">
 								<div class="text-center">
@@ -38,7 +38,7 @@
 										<div class="bi-star-fill"></div>
 										<div class="bi-star-fill"></div>
 									</div>									
-									${jum.price }원<br>															
+									${jum.price}원<br>															
 								</div>
 							</div>
 							<!-- Product actions-->
