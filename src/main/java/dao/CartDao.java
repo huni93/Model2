@@ -92,33 +92,7 @@ public class CartDao {
 
 	}
 
-	public boolean deleteCartItem(String ser) {
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
 
-	    try {
-	        conn = getConnection();
-
-	        String sql = "DELETE FROM cart WHERE ser = ?";
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1, ser);
-	        int rowsAffected = pstmt.executeUpdate();
-
-	        return rowsAffected > 0;
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        try {
-	            if (pstmt != null)
-	                pstmt.close();
-	            if (conn != null)
-	                conn.close();
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    return false;
-	}
 
 	}
 

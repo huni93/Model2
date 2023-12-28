@@ -16,8 +16,8 @@ import dao.BoardDao;
 import dao.MemberDao;
 import kic.mskim.MskimRequestMapping;
 import kic.mskim.RequestMapping;
+import model.Comment;
 import model.MyBoard;
-import model.MyComment;
 
 @WebServlet("/board/*")
 public class BoardController extends MskimRequestMapping {
@@ -143,7 +143,8 @@ public class BoardController extends MskimRequestMapping {
 		int num = Integer.parseInt(req.getParameter("num"));
 		
 		MyBoard board = bd.oneBoard(num);
-		
+		List<Comment> commentLi = bd.commentList(num);
+		req.setAttribute("commentLi", commentLi);
 		req.setAttribute("board", board);
 		
 		return "/WEB-INF/view/board/boardInfo.jsp";
@@ -239,7 +240,7 @@ public class BoardController extends MskimRequestMapping {
 		String comment = req.getParameter("comment");
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		bd.insertComment( comment,boardnum);
-		MyComment c= new MyComment();
+		Comment c= new Comment();
 		c.setNum(boardnum);
 		c.setContent(comment);
 		req.setAttribute("c", c);

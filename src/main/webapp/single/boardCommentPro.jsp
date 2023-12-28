@@ -1,3 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    ${c}
+    <div class = "col-sm-1">&nbsp;</div>
+    <div class = "col-sm-1">${c.num}</div>
+    <div class = "col-sm-9">${c.content}</div>
+    <div class = "col-sm-1">&nbsp;</div>

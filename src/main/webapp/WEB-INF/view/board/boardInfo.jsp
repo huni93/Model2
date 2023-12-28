@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+function enterkey(num) {
+	if(window.event.keyCode==13) {
+		commentPro(num)
+	}
+}
 function commentPro(num) {
 	let comment = document.querySelector("#comment").value
 	alert(comment)
@@ -22,7 +27,9 @@ function commentPro(num) {
 	let commentList = document.querySelector("#commentList")
 	commentList.innerHTML = this.responseText + "<br>" + commentList.innerHTML
 	}
-}}
+}
+	document.querySelector("#comment").value=""
+	}
 </script>
 </head>
 <body>
@@ -65,13 +72,18 @@ function commentPro(num) {
 					</div>
 				</div>
 				
-				<div class="row">
-					<div class = "col-sm-10" id="commentList">
+				<div class="row" id="commentList">
+			    <c:forEach var ="c" items="${commentLi}">
+				<div class = "col-sm-1">&nbsp;</div>
+				<div class = "col-sm-1">${c.num}</div>
+				<div class = "col-sm-9">${c.content}</div>
+				<div class = "col-sm-1">&nbsp;</div>
+				</c:forEach>
 					</div>			
 				</div>
          </div>
       </div>
    
-   </div>
+  
 </body>
 </html>

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Comment;
 import model.MyBoard;
 
 public class BoardDao {
@@ -156,4 +157,21 @@ public int boardCount(String boardid) throws UnsupportedEncodingException, SQLEx
           return pstmt.executeUpdate();
                       
        }
+	  
+	  public List<Comment> commentList(int num) throws UnsupportedEncodingException, SQLException {
+			 
+			 Connection conn = getConnection();
+	         PreparedStatement pstmt =
+	        		 conn.prepareStatement(" select * from myboardcomment where num = ? order by regdate desc");
+	         pstmt.setInt(1, num);	         
+			ResultSet rs = pstmt.executeQuery();
+			List<Comment> li = new ArrayList<Comment>();
+			while(rs.next()) {
+				Comment c = new Comment();
+				c.setNum(rs.getInt("num"));
+				c.setContent(rs.getString("content"));				
+				li.add(c);
+			}
+			return li;
+		 }
 }
